@@ -21,7 +21,7 @@ export default async function HeroSection() {
                     className="flex gap-5 flex-col items-center justify-center z-10"
                 >
                     <h1
-                        className="text-4xl leading-10 max-w-140 text-center text-white font-black"
+                        className="text-5xl leading-14 max-w-170 text-center text-white font-light"
                     >Find the Perfect Domain Name for Your Next Big Idea</h1>
                     <p
                         className="max-w-150 text-center text-white/70"

@@ -66,7 +66,7 @@ export default async function PopularTldsSection() {
                             className="space-y-2 w-full text-white"
                         >
                             <p
-                                className="text-2xl leading-15 font-bold"
+                                className="text-2xl leading-15 font-light"
                             >{item.price} INR</p>
                             <p
                                 className="text-white/70"
