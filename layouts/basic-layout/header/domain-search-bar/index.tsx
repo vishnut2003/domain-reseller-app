@@ -13,10 +13,12 @@ export default function HeaderDomainSearchBar() {
     const [search, setSearch] = useState<string>("");
 
     useEffect(() => {
-        const domain = searchParams.get("domain");
-        if (domain) {
-            setSearch(domain);
-        }
+        (() => {
+            const domain = searchParams.get("domain");
+            if (domain) {
+                setSearch(domain);
+            }
+        })();
     }, [searchParams]);
 
     if (pathname === "/domain-name-search") {

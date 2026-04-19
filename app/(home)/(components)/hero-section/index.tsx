@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import DefaultSection from "@/layouts/default-section";
 import { RiSearchLine } from "@remixicon/react";
 import BgImage from "./assets/hero-bg-image.jpg";
-import { Input } from "@/components/ui/input";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 
 export default async function HeroSection() {
