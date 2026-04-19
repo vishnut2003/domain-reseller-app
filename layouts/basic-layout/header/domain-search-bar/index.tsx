@@ -9,11 +9,13 @@ export default function HeaderDomainSearchBar() {
             className="w-full"
         >
             <InputGroup
-                className="w-full h-10 px-1"
+                className="w-full h-10 px-1 border-theme-dark"
             >
 
                 <InputGroupAddon>
-                    <RiSearchLine />
+                    <RiSearchLine
+                        className="text-theme-dark"
+                    />
                 </InputGroupAddon>
 
                 <InputGroupInput

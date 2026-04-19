@@ -20,13 +20,13 @@ export async function BasicHeader() {
                 </div>
 
                 <div
-                    className="w-full max-w-lg"
+                    className="w-full"
                 >
                     <HeaderDomainSearchBar />
                 </div>
 
                 <div
-                    className="w-full flex items-center justify-end gap-5"
+                    className="flex items-center justify-end gap-5"
                 >
                     <HeaderUserAction />
                     <HeaderCart />
