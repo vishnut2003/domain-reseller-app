@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import DefaultSection from "@/layouts/default-section";
 import { RiSearchLine } from "@remixicon/react";
 import BgImage from "./assets/hero-bg-image.jpg";
+import { Input } from "@/components/ui/input";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 
 export default async function HeroSection() {
     return (
@@ -10,7 +12,7 @@ export default async function HeroSection() {
         >
             <div
                 className="relative w-full rounded-3xl flex gap-5 items-center justify-center bg-cover bg-center overflow-hidden"
-                style={{backgroundImage: `url(${BgImage.src})`}}
+                style={{ backgroundImage: `url(${BgImage.src})` }}
             >
 
                 <div
@@ -27,14 +29,29 @@ export default async function HeroSection() {
                         className="max-w-150 text-center text-white/70"
                     >Search and register domains instantly at the best prices. Launch your online presence with ease—fast, secure, and hassle-free.</p>
 
-                    <Button
-                        variant={"default"}
-                        className="py-6 px-10"
-                        size={"lg"}
+                    <div
+                        className="flex items-center w-full gap-3"
                     >
-                        <RiSearchLine />
-                        <p>Search Domain</p>
-                    </Button>
+                        <InputGroup
+                            className="bg-white h-12 px-2"
+                        >
+
+                            <InputGroupAddon>
+                                <RiSearchLine />
+                            </InputGroupAddon>
+
+                            <InputGroupInput
+                                placeholder="Search your domain..."
+                            />
+                        </InputGroup>
+                        <Button
+                            variant={"default"}
+                            className="py-6 px-10"
+                            size={"lg"}
+                        >
+                            <p>Search Domain</p>
+                        </Button>
+                    </div>
                 </div>
 
             </div>
