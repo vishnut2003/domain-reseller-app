@@ -1,8 +1,9 @@
+import { BasicLayout } from "@/layouts/basic-layout";
 
 export default function Home() {
   return (
-    <div>
-      Home
-    </div>
+    <BasicLayout>
+      
+    </BasicLayout>
   );
 }
