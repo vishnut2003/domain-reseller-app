@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import { BasicHeader } from "./header";
+import BasicFooter from "./footer";
 
 export async function BasicLayout({
     children,
@@ -8,6 +9,7 @@ export async function BasicLayout({
         <div>
             <BasicHeader />
             <div>{children}</div>
+            <BasicFooter />
         </div>
     )
 }
