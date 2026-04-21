@@ -3,6 +3,7 @@ import { Logo } from "@/layouts/logo";
 import HeaderUserAction from "./user-actions";
 import HeaderDomainSearchBar from "./domain-search-bar";
 import HeaderCart from "./cart";
+import { Suspense } from "react";
 
 export async function BasicHeader() {
     return (
@@ -22,7 +23,9 @@ export async function BasicHeader() {
                 <div
                     className="w-full"
                 >
-                    <HeaderDomainSearchBar />
+                    <Suspense>
+                        <HeaderDomainSearchBar />
+                    </Suspense>
                 </div>
 
                 <div
