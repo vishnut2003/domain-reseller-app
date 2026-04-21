@@ -49,11 +49,90 @@ export class NameComApi {
                 { keyword },
             );
 
-            return response.data;
+            if (!response.data.results) {
+                return ({
+                    results: [],
+                });
+            }
+
+            let priceUpdatedDomains = await this.convertUsdToInr(response.data);
+            priceUpdatedDomains = this.updateDomainPrice(priceUpdatedDomains);
+
+            return priceUpdatedDomains;
 
         } catch (err) {
             const message = handleCatchBlock(err);
             throw new Error("name.com API failed:" + message);
         }
+    }
+
+    private async convertUsdToInr({ results: domains }: DomainSearchResultInterface): Promise<DomainSearchResultInterface> {
+        try {
+            const { data } = await axios.get<{
+                provider: string,
+                WARNING_UPGRADE_TO_V6: string,
+                terms: string,
+                base: string,
+                date: string,
+                time_last_updated: number,
+                rates: {
+                    [key: string]: number,
+                }
+            }>(
+                "https://api.exchangerate-api.com/v4/latest/USD",
+            );
+
+            const inrRate = data.rates?.["INR"];
+            if (!data.rates) throw new Error("Not rates includes.");
+            else if (typeof inrRate !== "number") {
+                throw new Error("INR currency value deos not exist.");
+            }
+
+            const updatedDomains: DomainSearchResultInterface["results"] = [];
+            for (const domain of domains) {
+                if (!domain.purchasePrice) {
+                    updatedDomains.push(domain);
+                    continue;
+                }
+
+                const inrPrice = domain.purchasePrice * inrRate;
+                updatedDomains.push({
+                    ...domain,
+                    purchasePrice: inrPrice,
+                })
+            }
+
+            return ({
+                results: updatedDomains,
+            })
+
+        } catch (err) {
+            const message = handleCatchBlock(err);
+            throw new Error(`Error while converting currency: ${message}`);
+        }
+    }
+
+    private updateDomainPrice({ results: domains }: DomainSearchResultInterface): DomainSearchResultInterface {
+        const updatedDomains: DomainSearchResultInterface["results"] = [];
+        for (const domain of domains) {
+            const purchasePrice = domain.purchasePrice;
+            if (!purchasePrice) {
+                updatedDomains.push(domain);
+                continue;
+            }
+
+            const profitPercent = 0.2; // 20%
+            const profit = purchasePrice * profitPercent;
+            const salePrice = Math.ceil(purchasePrice + profit);
+
+            updatedDomains.push({
+                ...domain,
+                purchasePrice: salePrice,
+            })
+        }
+
+        return ({
+            results: updatedDomains,
+        });
     }
 }

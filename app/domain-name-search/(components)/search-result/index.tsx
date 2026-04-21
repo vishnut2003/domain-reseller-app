@@ -3,6 +3,7 @@
 import { NameComSingleDomainSearchResult } from "@/app/api/domains/search-domain-availibility/route";
 import ErrorMessageElement from "@/components/message-elements/error-message";
 import { Button } from "@/components/ui/button";
+import { getStoreCurrency } from "@/config/store-settings";
 import { ErrorType } from "@/types/error";
 import { Fragment } from "react/jsx-runtime";
 
@@ -15,6 +16,8 @@ export function DomainSearchResultUi({
     isLoading: boolean,
     error: ErrorType,
 }) {
+
+    const currency = getStoreCurrency();
 
     if (error) {
         return (
@@ -94,7 +97,9 @@ export function DomainSearchResultUi({
                         <div
                             className="text-right"
                         >
-                            <p>{domain.purchasePrice}</p>
+                            <p
+                                className="font-bold"
+                            >{domain.purchasePrice} {currency}</p>
                             <Button
                                 variant={"default"}
                                 disabled={!domain.purchasable}
