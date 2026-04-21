@@ -3,6 +3,7 @@ import DefaultSection from "@/layouts/default-section";
 import { RiSearchLine } from "@remixicon/react";
 import BgImage from "./assets/hero-bg-image.jpg";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+import SearchDomainForm from "./search-domain";
 
 export default async function HeroSection() {
     return (
@@ -28,29 +29,7 @@ export default async function HeroSection() {
                         className="max-w-150 text-center text-white/70"
                     >Search and register domains instantly at the best prices. Launch your online presence with ease—fast, secure, and hassle-free.</p>
 
-                    <div
-                        className="flex items-center w-full gap-3"
-                    >
-                        <InputGroup
-                            className="bg-white h-12 px-2"
-                        >
-
-                            <InputGroupAddon>
-                                <RiSearchLine />
-                            </InputGroupAddon>
-
-                            <InputGroupInput
-                                placeholder="Search your domain..."
-                            />
-                        </InputGroup>
-                        <Button
-                            variant={"default"}
-                            className="py-6 px-10"
-                            size={"lg"}
-                        >
-                            <p>Search Domain</p>
-                        </Button>
-                    </div>
+                    <SearchDomainForm />
                 </div>
 
             </div>
