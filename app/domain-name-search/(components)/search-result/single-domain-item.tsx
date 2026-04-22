@@ -31,38 +31,39 @@ export default function SingleDomainResultItem({ domain }: {
                 </p>
             </div>
 
-            <div
-                className="text-right space-y-2"
-            >
+            <div>
                 {
-                    domain.purchasePrice && (
-                        <p
-                            className="font-bold"
+                    domain.purchasable && (
+                        <div
+                            className="text-right space-y-2"
                         >
-                            {currencySymbol} {domain.purchasePrice}
-                        </p>
+                            <p
+                                className="font-bold"
+                            >
+                                {currencySymbol} {domain.purchasePrice}
+                            </p>
+
+                            <div
+                                className="flex items-center gap-1"
+                            >
+                                <Button
+                                    variant={"default"}
+                                    disabled={!domain.purchasable}
+                                >
+                                    Buy Now
+                                </Button>
+
+                                <Button
+                                    variant={"default"}
+                                    className="bg-theme-primary/10 text-theme-primary hover:bg-theme-primary hover:text-white"
+                                    size={"sm"}
+                                >
+                                    <RiShoppingBasket2Line />
+                                </Button>
+                            </div>
+                        </div>
                     )
                 }
-
-                <div
-                    className="flex items-center gap-1"
-                >
-                    <Button
-                        variant={"default"}
-                        disabled={!domain.purchasable}
-                    >
-                        Buy Now
-                    </Button>
-
-                    <Button
-                        variant={"default"}
-                        className="bg-theme-primary/10 text-theme-primary hover:bg-theme-primary hover:text-white"
-                        size={"sm"}
-                    >
-                        <RiShoppingBasket2Line />
-                    </Button>
-                </div>
-
             </div>
         </div>
     )
