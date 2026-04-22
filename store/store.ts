@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
 });
 
 const migrations = {
+    // eslint-disable-next-line
     1: (state: any) => {
         if (!state?.cart || !Array.isArray(state.cart?.items)) {
             return { ...state, cart: { items: [] } };
