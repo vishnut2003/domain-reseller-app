@@ -3,9 +3,10 @@
 import { NameComSingleDomainSearchResult } from "@/app/api/domains/search-domain-availibility/route";
 import ErrorMessageElement from "@/components/message-elements/error-message";
 import { Button } from "@/components/ui/button";
-import { getStoreCurrency } from "@/config/store-settings";
+import { getStoreCurrencySymbol } from "@/config/store-settings";
 import { ErrorType } from "@/types/error";
 import { Fragment } from "react/jsx-runtime";
+import SingleDomainResultItem from "./single-domain-item";
 
 export function DomainSearchResultUi({
     domains,
@@ -16,8 +17,6 @@ export function DomainSearchResultUi({
     isLoading: boolean,
     error: ErrorType,
 }) {
-
-    const currency = getStoreCurrency();
 
     if (error) {
         return (
@@ -75,39 +74,10 @@ export function DomainSearchResultUi({
                         <hr className="opacity-50" />
                     )}
 
-                    <div
-                        className={
-                            "flex items-center justify-between py-3 px-5 hover:bg-theme-dark-black/10 rounded-lg"
-                            + ` ${!domain.purchasable && "opacity-30"}`
-                        }
-                    >
-                        <div>
-                            <p
-                                className="text-lg font-semibold"
-                            >{domain.domainName}</p>
-                            <p
-                                className="text-sm"
-                            >.{domain.tld}
-                                {!domain.purchasable && (
-                                    <>(Domain is already taken.)</>
-                                )}
-                            </p>
-                        </div>
-
-                        <div
-                            className="text-right"
-                        >
-                            <p
-                                className="font-bold"
-                            >{domain.purchasePrice} {currency}</p>
-                            <Button
-                                variant={"default"}
-                                disabled={!domain.purchasable}
-                            >
-                                Buy Now
-                            </Button>
-                        </div>
-                    </div>
+                    <SingleDomainResultItem
+                        domain={domain}
+                    />
+                    
                 </Fragment>
             ))}
         </div>
