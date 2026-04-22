@@ -1,6 +1,6 @@
 'use client';
 
-import { NameComSingleDomainSearchResult } from "@/app/api/domains/search-domain-availibility/route";
+import { NameComSingleDomainSearchResult } from "@/app/api/domains/search-available-domain/route";
 import ErrorMessageElement from "@/components/message-elements/error-message";
 import { Button } from "@/components/ui/button";
 import { getStoreCurrencySymbol } from "@/config/store-settings";

@@ -1,6 +1,6 @@
 'use client';
 
-import { NameComSingleDomainSearchResult } from "@/app/api/domains/search-domain-availibility/route";
+import { NameComSingleDomainSearchResult } from "@/app/api/domains/search-available-domain/route";
 import { Button } from "@/components/ui/button";
 import { getStoreCurrencySymbol } from "@/config/store-settings";
 import { RiShoppingBasket2Line } from "@remixicon/react";

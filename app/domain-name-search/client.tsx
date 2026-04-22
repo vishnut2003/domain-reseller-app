@@ -7,7 +7,7 @@ import { RiSearchLine } from "@remixicon/react";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
-import { DomainSearchResultInterface, NameComSingleDomainSearchResult } from "../api/domains/search-domain-availibility/route";
+import { DomainSearchResultInterface, NameComSingleDomainSearchResult } from "../api/domains/search-available-domain/route";
 import { ErrorType } from "@/types/error";
 import { handleCatchBlock } from "@/functions/common";
 import { DomainSearchResultUi } from "./(components)/search-result";
@@ -25,7 +25,7 @@ export default function DomainNameSearchPageClient() {
 
     async function searchDomains(searchDomain: string): Promise<DomainSearchResultInterface> {
         const response = await axios.get<DomainSearchResultInterface>(
-            "/api/domains/search-domain-availibility",
+            "/api/domains/search-available-domain",
             {
                 params: {
                     domain: searchDomain,

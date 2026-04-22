@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { NameComSingleDomainSearchResult } from "@/app/api/domains/search-domain-availibility/route";
+import type { NameComSingleDomainSearchResult } from "@/app/api/domains/search-available-domain/route";
 
 export interface CartItem {
     domainName: string;

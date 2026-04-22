@@ -1,4 +1,4 @@
-import { DomainSearchResultInterface } from "@/app/api/domains/search-domain-availibility/route";
+import { DomainSearchResultInterface } from "@/app/api/domains/search-available-domain/route";
 import { handleCatchBlock } from "@/functions/common";
 import axios, { AxiosInstance } from "axios";
 
