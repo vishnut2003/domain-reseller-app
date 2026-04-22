@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import {
     persistReducer,
+    createMigrate,
     FLUSH,
     REHYDRATE,
     PAUSE,
@@ -17,12 +18,23 @@ const rootReducer = combineReducers({
     cart: CartSlice,
 });
 
+const migrations = {
+    1: (state: any) => {
+        if (!state?.cart || !Array.isArray(state.cart?.items)) {
+            return { ...state, cart: { items: [] } };
+        }
+        return state;
+    },
+};
+
 const persistConfig = {
     key: "root",
     storage,
+    version: 1,
     whitelist: [
         "cart",
     ],
+    migrate: createMigrate(migrations, { debug: false }),
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

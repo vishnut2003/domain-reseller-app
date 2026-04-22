@@ -3,13 +3,32 @@
 import { NameComSingleDomainSearchResult } from "@/app/api/domains/search-available-domain/route";
 import { Button } from "@/components/ui/button";
 import { getStoreCurrencySymbol } from "@/config/store-settings";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { addDomainToCart } from "@/store/slices/cart";
 import { RiShoppingBasket2Line } from "@remixicon/react";
+import Link from "next/link";
 
 export default function SingleDomainResultItem({ domain }: {
     domain: NameComSingleDomainSearchResult,
 }) {
 
+    const storeDispatch = useAppDispatch();
+    const domainAlreadyInCart = useAppSelector(s => {
+        const exist = s.cart.items.find(d => d.domainName === domain.domainName);
+        return exist;
+    })
+
     const currencySymbol = getStoreCurrencySymbol();
+
+    function _addDomainToCart() {
+        if (domain.purchasable) {
+            storeDispatch(
+                addDomainToCart({
+                    domain,
+                })
+            )
+        }
+    }
 
     return (
         <div
@@ -32,16 +51,19 @@ export default function SingleDomainResultItem({ domain }: {
             </div>
 
             <div>
-                {
-                    domain.purchasable && (
-                        <div
-                            className="text-right space-y-2"
+                <div
+                    className="text-right space-y-2"
+                >
+                    {domain.purchasePrice && (
+                        <p
+                            className="font-bold"
                         >
-                            <p
-                                className="font-bold"
-                            >
-                                {currencySymbol} {domain.purchasePrice}
-                            </p>
+                            {currencySymbol} {domain.purchasePrice}
+                        </p>
+                    )}
+
+                    {
+                        domain.purchasable && !domainAlreadyInCart && (
 
                             <div
                                 className="flex items-center gap-1"
@@ -57,13 +79,31 @@ export default function SingleDomainResultItem({ domain }: {
                                     variant={"default"}
                                     className="bg-theme-primary/10 text-theme-primary hover:bg-theme-primary hover:text-white"
                                     size={"sm"}
+                                    type="button"
+                                    onClick={_addDomainToCart}
                                 >
                                     <RiShoppingBasket2Line />
                                 </Button>
                             </div>
-                        </div>
-                    )
-                }
+                        )
+                    }
+
+                    {
+                        domainAlreadyInCart && (
+                            <div>
+                                <Link
+                                    href={"/cart"}
+                                >
+                                    <Button
+                                        variant={"default"}
+                                    >Continue to Cart</Button>
+                                </Link>
+                            </div>
+                        )
+                    }
+
+                </div>
+
             </div>
         </div>
     )

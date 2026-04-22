@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import ReduxProvider from "@/providers/redux-provider";
 
 const dmSans = DM_Sans();
 
@@ -20,7 +21,11 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", dmSans.className, "font-sans")}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
+      </body>
     </html>
   );
 }

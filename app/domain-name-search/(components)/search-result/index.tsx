@@ -2,8 +2,6 @@
 
 import { NameComSingleDomainSearchResult } from "@/app/api/domains/search-available-domain/route";
 import ErrorMessageElement from "@/components/message-elements/error-message";
-import { Button } from "@/components/ui/button";
-import { getStoreCurrencySymbol } from "@/config/store-settings";
 import { ErrorType } from "@/types/error";
 import { Fragment } from "react/jsx-runtime";
 import SingleDomainResultItem from "./single-domain-item";
